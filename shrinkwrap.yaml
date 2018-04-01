@@ -1,6 +1,7 @@
 dependencies:
   express: 4.16.3
 devDependencies:
+  passport-local: 1.0.0
   pug: 2.0.3
 packages:
   /@types/babel-types/7.0.1:
@@ -455,6 +456,20 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-/CidTtiZMRlGDBViUyYs3I3mW/M=
+  /passport-local/1.0.0:
+    dependencies:
+      passport-strategy: 1.0.0
+    dev: true
+    engines:
+      node: '>= 0.4.0'
+    resolution:
+      integrity: sha1-H+YyaMkudWBmJkN+O5BmYsFbpu4=
+  /passport-strategy/1.0.0:
+    dev: true
+    engines:
+      node: '>= 0.4.0'
+    resolution:
+      integrity: sha1-tVOaqPwiWj0a0XlHbd8ja0QPUuQ=
   /path-parse/1.0.5:
     dev: true
     resolution:
@@ -765,4 +780,5 @@ shrinkwrapMinorVersion: 4
 shrinkwrapVersion: 3
 specifiers:
   express: ^4.16.3
+  passport-local: ^1.0.0
   pug: ^2.0.3

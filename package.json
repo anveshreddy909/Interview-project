@@ -2,7 +2,6 @@
   "//1": "describes your app and its dependencies",
   "//2": "https://docs.npmjs.com/files/package.json",
   "//3": "updating this file will download and update your packages",
-
   "name": "my-glitch-app",
   "version": "0.0.1",
   "description": "What am I about?",
@@ -13,6 +12,7 @@
     "express": "^4.16.3"
   },
   "devDependencies": {
+    "passport-local": "^1.0.0",
     "pug": "^2.0.3"
   },
   "engines": {
