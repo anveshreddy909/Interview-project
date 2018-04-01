@@ -11,9 +11,12 @@ const app = express()
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'))
 
+app.set('view engine', 'pug')
+
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
-  response.sendFile(__dirname + '/views/index.html')
+  //response.sendFile(__dirname + '/views/index.html')
+  response.render('index', { title: 'Hey', message: 'Hello there!' })
 })
 
 // Simple in-memory store
