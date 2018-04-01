@@ -16,7 +16,7 @@ app.set('view engine', 'pug')
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
   //response.sendFile(__dirname + '/views/index.html')
-  response.render('index', { title: 'Hey', message: 'Hello there!' })
+  response.render('login', { title: 'Hey', message: 'Hello there!' })
 })
 
 // Simple in-memory store
