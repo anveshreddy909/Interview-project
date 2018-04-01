@@ -2,7 +2,6 @@
   "//1": "describes your app and its dependencies",
   "//2": "https://docs.npmjs.com/files/package.json",
   "//3": "updating this file will download and update your packages",
-
   "name": "my-glitch-app",
   "version": "0.0.1",
   "description": "What am I about?",
@@ -10,7 +9,11 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "coffeescript": "^2.2.4",
+    "express": "^4.16.3",
+    "passport-local": "^1.0.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
   },
   "engines": {
     "node": "9.x"
