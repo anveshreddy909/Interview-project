@@ -6,13 +6,13 @@
   "version": "0.0.1",
   "description": "What am I about?",
   "scripts": {
-    "start": "node server.js"
+    "start": "coffee server.coffee"
   },
   "dependencies": {
+    "coffeescript": "^2.2.4",
     "express": "^4.16.3"
   },
   "devDependencies": {
-    "passport-local": "^1.0.0",
     "pug": "^2.0.3"
   },
   "engines": {
