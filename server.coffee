@@ -3,14 +3,32 @@
 # init project
 express = require "express"
 app = express()
+passport = require "passport"
+passportLocal = require "passport-local"
+Strategy = passportLocal.Strategy
+mongoose = require "mongoose"
+db = require "./db.js"
+User = require "./models/user.coffee"
+expressSession = require "express-session"
+bCrypt = require "bcrypt"
+myPlaintextPassword = 's0/\/\P4$$w0rD'
+saltRounds = 10
+
 
 # we've started you off with Express, 
 # but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
-
+sessionObj = 
+   secret: 'mySecretKey'
+        
 app.use express.static('public')
-
+app.use expressSession sessionObj
+         
+app.use passport.initialize()
+app.use passport.session()
 app.set 'view engine', 'pug'
+
+mongoose.connect db.url
 
 # http://expressjs.com/en/starter/basic-routing.html
 app.get "/", (request, response) -> 
@@ -18,14 +36,7 @@ app.get "/", (request, response) ->
   response.render 'login', title: 'Hey'
                            
 
-
-#Simple in-memory store
-dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-  
-]
+hashsync = bCrypt.hash myPlaintextPassword, saltRounds, null
 
 app.get "/dreams", (request, response) -> 
   response.send(dreams)
@@ -35,6 +46,39 @@ app.get "/dreams", (request, response) ->
 app.post "/dreams", (request, response) -> 
   dreams.push(request.query.dream)
   response.sendStatus(200)
+  
+passport.serializeUser (user, done) -> 
+  done null, user._id
+  
+passport.deserializeUser (id, done) ->
+  user
+  
+passport.use 'login', new Strategy({ passReqToCallback: true }, (req, username, password, done) ->
+  # check in mongo if a user with username exists or not
+  User.findOne { 'username': username }, (err, user) ->
+    # In case of any error, return using the done method
+    if err
+      return done(err)
+    # Username does not exist, log error & redirect back
+    if !user
+      console.log 'User Not Found with username ' + username
+      return done(null, false, req.flash('message', 'User Not found.'))
+    # User exists but wrong password, log the error 
+    if !isValidPassword(user, password)
+      console.log 'Invalid Password'
+      return done(null, false, req.flash('message', 'Invalid Password'))
+    # User and password both match, return user from 
+    # done method which will be treated like success
+    done null, user
+  return
+)
+
+
+app.post '/login', passport.authenticate('local',
+  successRedirect: '/'
+  failureRedirect: '/login'
+  failureFlash: true)
+  
 
 
 listener = app.listen process.env.PORT, () -> 

@@ -11,4 +11,11 @@ html
        div.card
          div.card-body
            h2 Login
-           
+           form
+             div.form-group
+               label Email Address
+               input.form-control(type="email", id="exampleInputEmail1", aria-describedby="emailHelp", placeholder="Enter email")
+             div.form-group
+                 label(for="exampleInputPassword1") Password
+                 input.form-control(type="password", placeholder="Password")
+             button.btn.btn-primary(type="submit") Submit
