@@ -126,7 +126,9 @@ app.get '/login', (req, res) ->
 
 app.get '/signup', (req, res) -> 
   res.render 'signup'
-  
+
+app.post '/signup' passport.authenticate('local',
+                                         
 
 
 listener = app.listen process.env.PORT, () -> 
