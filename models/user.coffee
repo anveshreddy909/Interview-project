@@ -14,8 +14,9 @@ userSchema.methods.generateHash = (password) ->
 
 # checking if password is valid
 
-userSchema.methods.validPassword = (password) =>
-  bcrypt.compareSync bcrypt.genSaltSync(8), password, null
+userSchema.methods.validPassword = (password, matchpass) =>
+  console.log matchpass, password
+  bcrypt.compareSync password, matchpass, null
 
 # create the model for users and expose it to our app
 module.exports = mongoose.model('User', userSchema)
