@@ -43,6 +43,9 @@ hashsync = bCrypt.hash myPlaintextPassword, saltRounds, null
 
 app.get "/dreams", (request, response) -> 
   response.send(dreams)
+  
+createHash = (password) ->
+  bCrypt.hashSync password, bCrypt.genSaltSync(10), null
 
 
 # could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
@@ -77,11 +80,14 @@ passport.use 'login', new Strategy({ passReqToCallback: true }, (req, username, 
 )
 
 passport.use 'signup', new Strategy({ passReqToCallback: true }, (req, username, password, done) ->
-
+  
+  console.log 'username'+ username
   findOrCreateUser = ->
     # find a user in Mongo with provided username
+    
     User.findOne { 'username': username }, (err, user) ->
       # In case of any error return
+      console.log 'username'+ username
       if err
         console.log 'Error in SignUp: ' + err
         return done(err)
@@ -97,8 +103,6 @@ passport.use 'signup', new Strategy({ passReqToCallback: true }, (req, username,
         newUser.username = username
         newUser.password = createHash(password)
         newUser.email = req.param('email')
-        newUser.firstName = req.param('firstName')
-        newUser.lastName = req.param('lastName')
         # save the user
         newUser.save (err) ->
           if err
@@ -127,11 +131,13 @@ app.get '/login', (req, res) ->
 app.get '/signup', (req, res) -> 
   res.render 'signup'
   
-app.post '/signup', passport.authenticate('signup',
+###app.post '/signup', passport.authenticate('signup',
   successRedirect: '/login'
   failureRedirect: '/signup'
   failureFlash: true)
-                                         
+#### 
+app.post '/signup', (req, res) ->
+  console.log req
                                          
 
 
