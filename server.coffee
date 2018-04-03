@@ -49,10 +49,10 @@ app.set 'view engine', 'pug'
 
 # http://expressjs.com/en/starter/basic-routing.html
 app.get "/", (request, response) -> 
-  #response.sendFile(__dirname + '/views/index.html')
-  response.render 'index', title: 'Hey'
-
-  
+  if request.isAuthenticated()
+    response.render 'index', title: 'Hey'
+  else
+    response.render 'login'
 
 
 app.post '/login', passport.authenticate('local-login',
@@ -71,7 +71,15 @@ app.post '/signup', passport.authenticate('local-signup',
   successRedirect: '/login'
   failureRedirect: '/signup'
   failureFlash: true)
-                                         
+                          
+isLoggedIn = (req, res, next) ->
+  # if user is authenticated in the session, carry on
+  if req.isAuthenticated()
+    return next()
+  # if they aren't redirect them to the home page
+  res.redirect '/login'
+  return
+
 
 
 listener = app.listen process.env.PORT, () -> 
