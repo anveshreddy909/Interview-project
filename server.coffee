@@ -116,7 +116,7 @@ passport.use 'signup', new Strategy({ passReqToCallback: true }, (req, username,
 )
 
 
-app.post '/login', passport.authenticate('local',
+app.post '/login', passport.authenticate('login',
   successRedirect: '/'
   failureRedirect: '/login'
   failureFlash: true)
@@ -127,7 +127,7 @@ app.get '/login', (req, res) ->
 app.get '/signup', (req, res) -> 
   res.render 'signup'
   
-app.post '/signup', passport.authenticate('local',
+app.post '/signup', passport.authenticate('signup',
   successRedirect: '/login'
   failureRedirect: '/signup'
   failureFlash: true)
