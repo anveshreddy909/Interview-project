@@ -11,7 +11,7 @@ html
        div.card
          div.card-body
            h2 Signup
-           form
+           form(action="/signup" method="post")
              div.form-group
                label Username
                input.form-control(type="username", id="usernamesignup", aria-describedby="usernameHelp", placeholder="Enter UserName")

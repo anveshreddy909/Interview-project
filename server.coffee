@@ -126,8 +126,12 @@ app.get '/login', (req, res) ->
 
 app.get '/signup', (req, res) -> 
   res.render 'signup'
-
-app.post '/signup' passport.authenticate('local',
+  
+app.post '/signup', passport.authenticate('local',
+  successRedirect: '/login'
+  failureRedirect: '/signup'
+  failureFlash: true)
+                                         
                                          
 
 
