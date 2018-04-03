@@ -10,7 +10,8 @@ mongoose = require "mongoose"
 db = require "./db.js"
 User = require "./models/user.coffee"
 expressSession = require "express-session"
-
+bodyParser = require "body-parser"
+methodOverride = require "method-override"
 myPlaintextPassword = 's0/\/\P4$$w0rD'
 saltRounds = 10
 flash  = require "connect-flash"
@@ -25,7 +26,18 @@ sessionObj =
         
 app.use express.static('public')
 app.use expressSession sessionObj
-app.use flash()         
+app.use bodyParser.json()
+app.use bodyParser.urlencoded(extended: true)
+app.use methodOverride((req) ->
+  if req.body and typeof req.body == 'object' and '_method' of req.body
+    # look in urlencoded POST bodies and delete it
+    method = req.body._method
+    delete req.body._method
+    return method
+  return
+)
+
+app.use flash()    
 app.use passport.initialize()
 app.use passport.session()
 require('./config/passport.coffee') passport
@@ -54,8 +66,11 @@ app.get '/login', (req, res) ->
 app.get '/signup', (req, res) -> 
   res.render 'signup'
   
-app.post '/signup', passport.authenticate 'local-signup', (req, res) -> 
-  console.log "passport user", req;
+
+app.post '/login', passport.authenticate('local-sign',
+  successRedirect: '/'
+  failureRedirect: '/login'
+  failureFlash: true)
                                          
 
 
