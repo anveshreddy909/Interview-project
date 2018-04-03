@@ -14,10 +14,10 @@ html
            form(action="/signup" method="post")
              div.form-group
                label Username
-               input.form-control(type="username", id="usernamesignup", aria-describedby="usernameHelp", placeholder="Enter UserName")
+               input.form-control(type="username", name="username" id="usernamesignup", aria-describedby="usernameHelp", placeholder="Enter UserName")
              div.form-group
                label Email Address
-               input.form-control(type="email", id="exampleInputEmail1", aria-describedby="emailHelp", placeholder="Enter email")
+               input.form-control(type="email", name="email," id="exampleInputEmail1", aria-describedby="emailHelp", placeholder="Enter email")
              div.form-group
                  label(for="exampleInputPassword1") Password
                  input.form-control(type="password", placeholder="Password")
