@@ -14,8 +14,8 @@ html
            form(action="/login" method="post")
              div.form-group
                label Email Address
-               input.form-control(type="email", id="exampleInputEmail1", aria-describedby="emailHelp", placeholder="Enter email")
+               input.form-control(type="email", name="email", id="exampleInputEmail1", aria-describedby="emailHelp", placeholder="Enter email")
              div.form-group
                  label(for="exampleInputPassword1") Password
-                 input.form-control(type="password", placeholder="Password")
+                 input.form-control(type="password", name="password", placeholder="Password")
              button.btn.btn-primary(type="submit") Submit

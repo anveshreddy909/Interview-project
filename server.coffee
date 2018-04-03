@@ -50,7 +50,7 @@ app.set 'view engine', 'pug'
 # http://expressjs.com/en/starter/basic-routing.html
 app.get "/", (request, response) -> 
   #response.sendFile(__dirname + '/views/index.html')
-  response.render 'login', title: 'Hey'
+  response.render 'index', title: 'Hey'
 
   
 
@@ -68,7 +68,7 @@ app.get '/signup', (req, res) ->
   
 
 app.post '/signup', passport.authenticate('local-signup',
-  successRedirect: '/'
+  successRedirect: '/login'
   failureRedirect: '/signup'
   failureFlash: true)
                                          
