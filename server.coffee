@@ -13,6 +13,7 @@ expressSession = require "express-session"
 bCrypt = require "bcrypt"
 myPlaintextPassword = 's0/\/\P4$$w0rD'
 saltRounds = 10
+flash  = require "connect-flash"
 
 
 # we've started you off with Express, 
@@ -23,9 +24,11 @@ sessionObj =
         
 app.use express.static('public')
 app.use expressSession sessionObj
-         
+app.use flash()         
 app.use passport.initialize()
 app.use passport.session()
+
+
 app.set 'view engine', 'pug'
 
 mongoose.connect db.url
