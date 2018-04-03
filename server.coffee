@@ -54,6 +54,12 @@ app.get "/", (request, response) ->
   else
     response.render 'login'
 
+app.get "/search", (request, response) -> 
+  if request.isAuthenticated()
+    response.render 'search', title: 'Hey'
+  else
+    response.render 'login'
+
 
 app.post '/login', passport.authenticate('local-login',
   successRedirect: '/'
