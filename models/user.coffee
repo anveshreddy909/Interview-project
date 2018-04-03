@@ -14,7 +14,7 @@ userSchema.methods.generateHash = (password) ->
 
 # checking if password is valid
 
-userSchema.methods.validPassword = (password) ->
+userSchema.methods.validPassword = (password) =>
   bcrypt.compareSync password, @local.password
 
 # create the model for users and expose it to our app
