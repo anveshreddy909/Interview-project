@@ -7,5 +7,9 @@ html
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
   body
     header
-    nav.navbar.fixed-top.navbar-dark.bg-dark
-      
+    nav.navbar.fixed-top.navbar-dark.bg-dark.justify-content-between
+      div.d-flex.flex-row.justify-content-around
+        a.nav-link.nav-item.text-light('/') Home
+        a.nav-link.nav-item.text-light('/search') Search
+      div
+        a.nav-link.align-self-end.nav-item.text-danger('/logout') Logout
