@@ -2,7 +2,7 @@
 # load all the things we need
 LocalStrategy = require('passport-local').Strategy
 # load up the user model
-User = require('../app/models/user')
+User = require('../models/user')
 # expose this function to our app using module.exports
 
 module.exports = (passport) ->
@@ -27,13 +27,14 @@ module.exports = (passport) ->
   # we are using named strategies since we have one for login and one for signup
   # by default, if there was no name, it would just be called 'local'
   passport.use 'local-signup', new LocalStrategy({
-    usernameField: 'email'
+    usernameField: 'username'
     passwordField: 'password'
     passReqToCallback: true
   }, (req, email, password, done) ->
     # find a user whose email is the same as the forms email
+    console.log req, email
     # we are checking to see if the user trying to login already exists
-    User.findOne { 'local.email': email }, (err, user) ->
+    User.findOne { 'email': email }, (err, user) ->
       # if there are any errors, return the error
       if err
         return done(err)
@@ -45,8 +46,8 @@ module.exports = (passport) ->
         # create the user
         newUser = new User
         # set the user's local credentials
-        newUser.local.email = email
-        newUser.local.password = newUser.generateHash(password)
+        newUser.email = email
+        newUser.password = newUser.generateHash(password)
         # use the generateHash function in our user model
         # save the user
         newUser.save (err) ->

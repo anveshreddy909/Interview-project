@@ -10,10 +10,11 @@ mongoose = require "mongoose"
 db = require "./db.js"
 User = require "./models/user.coffee"
 expressSession = require "express-session"
-bCrypt = require "bcrypt"
+
 myPlaintextPassword = 's0/\/\P4$$w0rD'
 saltRounds = 10
 flash  = require "connect-flash"
+mongoose.connect db.url
 
 
 # we've started you off with Express, 
@@ -27,31 +28,18 @@ app.use expressSession sessionObj
 app.use flash()         
 app.use passport.initialize()
 app.use passport.session()
+require('./config/passport') passport
 
 
 app.set 'view engine', 'pug'
 
-mongoose.connect db.url
+
 
 # http://expressjs.com/en/starter/basic-routing.html
 app.get "/", (request, response) -> 
   #response.sendFile(__dirname + '/views/index.html')
   response.render 'login', title: 'Hey'
-                           
 
-hashsync = bCrypt.hash myPlaintextPassword, saltRounds, null
-
-app.get "/dreams", (request, response) -> 
-  response.send(dreams)
-  
-createHash = (password) ->
-  bCrypt.hashSync password, bCrypt.genSaltSync(10), null
-
-
-# could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post "/dreams", (request, response) -> 
-  dreams.push(request.query.dream)
-  response.sendStatus(200)
   
 passport.serializeUser (user, done) -> 
   done null, user._id
@@ -120,7 +108,7 @@ passport.use 'signup', new Strategy({ passReqToCallback: true }, (req, username,
 )
 
 
-app.post '/login', passport.authenticate('login',
+app.post '/login', passport.authenticate('local-login',
   successRedirect: '/'
   failureRedirect: '/login'
   failureFlash: true)
@@ -131,13 +119,10 @@ app.get '/login', (req, res) ->
 app.get '/signup', (req, res) -> 
   res.render 'signup'
   
-###app.post '/signup', passport.authenticate('signup',
+app.post '/signup', passport.authenticate('local-signup',
   successRedirect: '/login'
   failureRedirect: '/signup'
   failureFlash: true)
-#### 
-app.post '/signup', (req, res) ->
-  console.log req
                                          
 
 

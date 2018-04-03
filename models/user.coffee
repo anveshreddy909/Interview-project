@@ -1,9 +1,23 @@
 mongoose = require 'mongoose'
-model = 
-  username: String,
-  password: String,
-  email: String,
-  gender: String,
-  address: String
+bcrypt = require "bcrypt"
 
-module.exports = mongoose.model 'User', model 
+userSchema = mongoose.Schema(
+  username: String
+  email: String,
+  password: String)
+
+# methods ======================
+# generating a hash
+
+userSchema.methods.generateHash = (password) ->
+  bcrypt.hashSync password, bcrypt.genSaltSync(8), null
+
+# checking if password is valid
+
+userSchema.methods.validPassword = (password) ->
+  bcrypt.compareSync password, @local.password
+
+# create the model for users and expose it to our app
+module.exports = mongoose.model('User', userSchema)
+
+# ---
