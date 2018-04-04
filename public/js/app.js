@@ -42,4 +42,8 @@ $(document).ready(function () {
             .catch(e=>alert("error"))
   });
   
+  $('#showSavedItems').click(()=>{
+    services.loadSaveSearch();
+  });
+  
 })

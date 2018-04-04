@@ -10,7 +10,14 @@ const services = {
   saveSearch: function(searchVal, searchname) {
     return fetch('/savesearch?searchParams='+searchVal+'&name='+searchname)
           .then(response=>response.json())
-          .catch(e=>Promise.reject("cities call failed"))
+          .catch(e=>Promise.reject("save call failed"))
+          .then(response=>Promise.resolve(response))
+  },
+  
+  loadSaveSearch: function() {
+    return fetch('/loadsavesearch')
+          .then(response=>response.json())
+          .catch(e=>Promise.reject("load call failed"))
           .then(response=>Promise.resolve(response))
   }
   

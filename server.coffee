@@ -88,6 +88,9 @@ app.get '/savesearch', (request, response) ->
           if err
             return err
           return response.json status: "success"
+        
+app.get '/loadsavesearch', (req, res) ->
+  
                           
 isLoggedIn = (req, res, next) ->
   # if user is authenticated in the session, carry on
