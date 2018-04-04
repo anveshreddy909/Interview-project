@@ -80,3 +80,8 @@ footer > a {
 .nicejob {
   text-decoration: line-through;
 }
+
+.searchBox{
+  border: 1px solid #ced4da;
+  border-radius: 0.25em;
+}

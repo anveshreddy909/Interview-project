@@ -16,7 +16,9 @@ html
       div.tab-content
         div.tab-pane.fade.show.active.m-5(id="search")
           b search
-          input.form-control(type="text", id="searchField", placeholder="Enter search url, upto 3 url comma separated...")
+          div.d-flex.flex-row.searchBox
+            div.searchVal test
+            input.form-control.border-white(type="text", id="searchField", placeholder="Enter search url, upto 3 url comma separated...")
           ul.list-group.none(id="search-results")
           
         div.tab-pane.fade.show(id="view-search")    
