@@ -25,6 +25,9 @@ SearchModel = require "./models/search.coffee"
 sessionObj = 
    secret: 'mySecretKey'
         
+
+require('./config/passport.coffee') passport
+
 app.use express.static('public')
 app.use expressSession sessionObj
 app.use bodyParser.json()
@@ -41,56 +44,55 @@ app.use methodOverride((req) ->
 app.use flash()    
 app.use passport.initialize()
 app.use passport.session()
-require('./config/passport.coffee') passport
 
 
 app.set 'view engine', 'pug'
+require('./config/routes.coffee') app, passport
 
 
+# # http://expressjs.com/en/starter/basic-routing.html
+# app.get "/", (request, response) -> 
+#   if request.isAuthenticated()
+#     response.render 'index', title: 'Hey'
+#   else
+#     response.render 'login'
 
-# http://expressjs.com/en/starter/basic-routing.html
-app.get "/", (request, response) -> 
-  if request.isAuthenticated()
-    response.render 'index', title: 'Hey'
-  else
-    response.render 'login'
-
-app.get "/search", isLoggedIn,  (request, response) -> 
-  if request.isAuthenticated()
-    response.render 'search', title: 'Hey'
-  else
-    response.render 'login'
+# app.get "/search",  (request, response) -> 
+#   if request.isAuthenticated()
+#     response.render 'search', title: 'Hey'
+#   else
+#     response.render 'login'
 
 
-app.post '/login', passport.authenticate('local-login',
-  successRedirect: '/'
-  failureRedirect: '/login'
-  failureFlash: true)
+# app.post '/login', passport.authenticate('local-login',
+#   successRedirect: '/'
+#   failureRedirect: '/login'
+#   failureFlash: true)
 
-app.get '/login', (req, res) -> 
-  res.render 'login'
+# app.get '/login', (req, res) -> 
+#   res.render 'login'
 
-app.get '/signup', (req, res) -> 
-  res.render 'signup'
+# app.get '/signup', (req, res) -> 
+#   res.render 'signup'
 
-app.post '/signup', passport.authenticate('local-signup',
-  successRedirect: '/login'
-  failureRedirect: '/signup'
-  failureFlash: true)
+# app.post '/signup', passport.authenticate('local-signup',
+#   successRedirect: '/login'
+#   failureRedirect: '/signup'
+#   failureFlash: true)
 
-app.get '/savesearch', (request, response) ->
-    console.log request.query.searchParams
-    newSearch = new SearchModel
-    newSearch.user = request.user
-    newSearch.searchQuery = request.query.searchParams
-    newSearch.name = request.query.name
-    newSearch.save (err) ->
-          if err
-            return err
-          return response.json status: "success"
+# app.get '/savesearch', isLoggedIn, (request, response) ->
+#     console.log request.query.searchParams
+#     newSearch = new SearchModel
+#     newSearch.user = request.user
+#     newSearch.searchQuery = request.query.searchParams
+#     newSearch.name = request.query.name
+#     newSearch.save (err) ->
+#           if err
+#             return err
+#           return response.json status: "success"
         
-app.get '/loadsavesearch', (req, res) ->
-  console.log req.user
+# app.get '/loadsavesearch', (req, res) ->
+#   console.log req.user
                           
 isLoggedIn = (req, res, next) ->
   console.log req, res ,next
