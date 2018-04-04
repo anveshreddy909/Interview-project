@@ -55,7 +55,7 @@ app.get "/", (request, response) ->
   else
     response.render 'login'
 
-app.get "/search", (request, response) -> 
+app.get "/search", isLoggedIn,  (request, response) -> 
   if request.isAuthenticated()
     response.render 'search', title: 'Hey'
   else
@@ -90,9 +90,10 @@ app.get '/savesearch', (request, response) ->
           return response.json status: "success"
         
 app.get '/loadsavesearch', (req, res) ->
-  
+  console.log req.user
                           
 isLoggedIn = (req, res, next) ->
+  console.log req, res ,next
   # if user is authenticated in the session, carry on
   if req.isAuthenticated()
     return next()
