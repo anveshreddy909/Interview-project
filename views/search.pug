@@ -23,7 +23,21 @@ html
         div.tab-pane.fade.show(id="view-search") 
         div.d-flex.flex-row.justify-content-around
           button.btn.btn-primary Search
-          button.btn.btn-secondary(id="savesearch") Save Search
+          button.btn.btn-secondary(data-toggle="modal" data-target="#exampleModal") Save Search'
+          
+      #exampleModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title Search Name
+            button.close(type="button" data-dismiss="modal" aria-label="Close")
+              span(aria-hidden="true") ×
+          .modal-body
+            div
+            
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-dismiss="modal") Close
+            button.btn.btn-primary(type="button" id="savesearch" ) Save changes
           
   include ./includes/foot.pug
       

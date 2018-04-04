@@ -28,7 +28,14 @@ $(document).ready(function () {
    });
   
   $('#savesearch').click(()=>{
-    services.saveSearch(searchItem.reduce((finalVal, val)=>{return (finalVal? finalVal+ ", "+ val.value : val.value)},""));
+    services.saveSearch(searchItem.reduce((finalVal, val)=>{return (finalVal? finalVal+ ", "+ val.value : val.value)},""))
+            .then(data=>{
+              console.log(data);
+              if(data.status.toLowerCase() === "success"){
+                alert("saved search successfully!");
+              }
+            })
+            .catch(e=>alert("error"))
   });
   
 })
