@@ -7,7 +7,7 @@ html
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
   body
     header
-    nav.navbar.fixed-top.navbar-dark.bg-dark.justify-content-between
+    nav.navbar.navbar-dark.bg-dark.justify-content-between
       div.d-flex.flex-row.justify-content-around
         a.nav-link.nav-item.text-light(href='/') Home
         a.nav-link.nav-item.text-light.active(href='/search') Search
@@ -16,6 +16,6 @@ html
   
     nav
       div.nav.nav-tabs
-      
-          
+        a.nav-item.nav-link.active(data-toggle="tab", href="#search", role="tab") Search 
+        a.nav-item.nav-link(data-toggle="tab", href="#view-search", role="tab") Saved Search
       
