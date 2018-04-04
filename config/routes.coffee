@@ -31,8 +31,8 @@ module.exports = (app, passport) ->
     failureRedirect: '/signup'
     failureFlash: true)
 
-  app.get '/savesearch',isLoggedIn, (request, response) ->
-      console.log request.query.searchParams
+  app.get '/savesearch', (request, response) ->
+      console.log request.isAuthenticated(), request.user
       newSearch = new SearchModel
       newSearch.user = request.user
       newSearch.searchQuery = request.query.searchParams
@@ -47,8 +47,8 @@ module.exports = (app, passport) ->
 
 
 isLoggedIn = (req, res, next) ->
-  console.log req, res ,next
   # if user is authenticated in the session, carry on
+  console.log req.isAuthenticated()
   if req.isAuthenticated()
     return next()
   # if they aren't redirect them to the home page
