@@ -5,6 +5,10 @@ const services = {
           .then(response=>response.json())
           .catch(e=>Promise.reject("cities call failed"))
           .then(response=>Promise.resolve(response))
+  },
+  
+  saveSearch: function(searchVal) {
+    return fetch()
   }
   
 }
