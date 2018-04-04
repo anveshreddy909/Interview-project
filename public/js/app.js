@@ -4,6 +4,8 @@ $(document).ready(function () {
   console.log(services);
   const searchItem = [];
   $('#searchField').keyup(function(event){
+    searchItem.length == 3 ? alert("max search limit reached!"): null;
+      
     this.value.length>2?services.getDomainSuggestion(this.value)
           .then(data=>{
             console.log(data);
