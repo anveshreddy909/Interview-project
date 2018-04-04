@@ -32,7 +32,6 @@ module.exports = (passport) ->
     passReqToCallback: true
   }, (req, email, password, done) ->
     # find a user whose email is the same as the forms email
-    console.log email, password
     # we are checking to see if the user trying to login already exists
     User.findOne { 'email': email }, (err, user) ->
       # if there are any errors, return the error
@@ -70,9 +69,7 @@ module.exports = (passport) ->
     # callback with email and password from our form
     # find a user whose email is the same as the forms email
     # we are checking to see if the user trying to login already exists
-    console.log email
     User.findOne { 'email': email }, (err, user) ->
-      console.log err, user
       # if there are any errors, return the error before anything else
       if err
         return done(err)
