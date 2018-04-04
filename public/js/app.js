@@ -16,9 +16,12 @@ $(document).ready(function () {
   });
   
    $('#search-results').click(event=>{
-     console.log(event);
-     $(event.target).attr(;;)
-     
+     console.log($(event.target).attr('value'));
+     searchItem.push({value: $(event.target).attr('value'), label: event.target.innerHTML});
+     console.log(searchItem);
+     $('#search-results').toggle();
+     $('.searchVal').html(searchItem.reduce((finalVal, val)=>{return (finalVal? finalVal+ ", "+ val.label : val.label)},""));
+     $('#searchField').value="";
    });
   
 })
