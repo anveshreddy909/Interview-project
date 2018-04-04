@@ -81,7 +81,7 @@ app.post '/signup', passport.authenticate('local-signup',
   failureFlash: true)
 
 app.get '/savesearch', (request, response) ->
-    console.log request.isAuthenticated(), request.user
+    console.log request.session
     newSearch = new SearchModel
     newSearch.user = request.user
     newSearch.searchQuery = request.query.searchParams
