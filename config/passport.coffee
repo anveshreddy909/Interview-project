@@ -3,6 +3,7 @@
 LocalStrategy = require('passport-local').Strategy
 # load up the user model
 User = require('../models/user.coffee')
+SearchModel = require('../models/search.coffee')
 # expose this function to our app using module.exports
 
 module.exports = (passport) ->
