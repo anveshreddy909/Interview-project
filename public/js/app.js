@@ -2,6 +2,15 @@
 
 $(document).ready(function () {
   console.log(services);
-  $('#searchField').tokenfield();
-  $('#searchField').on
+  let tokenFieldObj = {
+    autocomplete: {
+      source: ['red'],
+      delay: 100
+    },
+    showAutocompleteOnFocus: false
+  }
+  $('#searchField').tokenfield(tokenFieldObj);
+  $('#searchField').keypress(event=>{
+    console.log(event.value)
+  });
 })
