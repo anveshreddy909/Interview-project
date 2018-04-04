@@ -7,8 +7,8 @@ const services = {
           .then(response=>Promise.resolve(response))
   },
   
-  saveSearch: function(searchVal) {
-    return fetch('/savesearch?searchParams='+searchVal)
+  saveSearch: function(searchVal, searchname) {
+    return fetch('/savesearch?searchParams='+searchVal+'&name='+searchname)
           .then(response=>response.json())
           .catch(e=>Promise.reject("cities call failed"))
           .then(response=>Promise.resolve(response))

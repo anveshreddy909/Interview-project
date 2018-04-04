@@ -83,7 +83,7 @@ app.get '/savesearch', (request, response) ->
     newSearch = new SearchModel
     newSearch.user = request.user
     newSearch.searchQuery = request.query.searchParams
-    newSearch.save
+    newSearch.name = request.query.name
     newSearch.save (err) ->
           if err
             return err

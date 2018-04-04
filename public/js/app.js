@@ -28,7 +28,11 @@ $(document).ready(function () {
    });
   
   $('#savesearch').click(()=>{
-    services.saveSearch(searchItem.reduce((finalVal, val)=>{return (finalVal? finalVal+ ", "+ val.value : val.value)},""))
+    if(!$('#searchName').val().length){
+      alert("search name cannot be empty");
+      return;
+    }
+    services.saveSearch(searchItem.reduce((finalVal, val)=>{return (finalVal? finalVal+ ", "+ val.value : val.value)},""), $('#searchName').val())
             .then(data=>{
               console.log(data);
               if(data.status.toLowerCase() === "success"){

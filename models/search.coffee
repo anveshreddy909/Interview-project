@@ -4,7 +4,9 @@ Schema = mongoose.Schema
 
 searchSchema = mongoose.Schema(
   user: { type : Schema.ObjectId, ref : 'User' },
-  searchQuery: String)
+  searchQuery: String,
+  name: String
+)
 
 # methods ======================
 # generating a hash
