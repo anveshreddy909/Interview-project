@@ -1,10 +1,5 @@
 html
-  head
-    title=title
-    meta(name="description", content="interview app")
-    link(id="favicon",rel="icon", href="https://glitch.com/edit/favicon-app.ico", type="image/x-icon")
-    link(rel="stylesheet", href="/style.css")
-    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+  include ./includes/head.jade
   body
     header
     nav.navbar.fixed-top.navbar-dark.bg-dark.justify-content-between
@@ -18,6 +13,7 @@ html
       div.container
         h1.display-4 Welcome to the App.
         p.lead This app let you , search on different domain urls and save the search.
+  include ./includes/foot.jade
           
           
       
