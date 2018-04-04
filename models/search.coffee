@@ -1,5 +1,6 @@
 mongoose = require 'mongoose'
 bcrypt = require "bcrypt"
+Schema = mongoose.Schema
 
 searchSchema = mongoose.Schema(
   user: { type : Schema.ObjectId, ref : 'User' },

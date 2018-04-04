@@ -78,7 +78,7 @@ app.post '/signup', passport.authenticate('local-signup',
   failureFlash: true)
 
 app.get '/savesearch', (request, response) ->
-    console.log request.query.searchParam
+    console.log request.query.searchParams
                           
 isLoggedIn = (req, res, next) ->
   # if user is authenticated in the session, carry on

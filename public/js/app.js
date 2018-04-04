@@ -27,4 +27,8 @@ $(document).ready(function () {
      $('#searchField').attr('placeholder', "");
    });
   
+  $('#savesearch').click(()=>{
+    services.saveSearch(searchItem.reduce((finalVal, val)=>{return (finalVal? finalVal+ ", "+ val.value : val.value)},""));
+  });
+  
 })
