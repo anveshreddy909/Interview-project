@@ -84,4 +84,15 @@ footer > a {
 .searchBox{
   border: 1px solid #ced4da;
   border-radius: 0.25em;
+  padding: .375rem .75rem;
+}
+
+.searchVal{
+  padding-top: 6px;
+    
+}
+
+input:focus{
+  border: none;
+  outline: none
 }
