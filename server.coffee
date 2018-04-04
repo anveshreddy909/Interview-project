@@ -16,6 +16,7 @@ myPlaintextPassword = 's0/\/\P4$$w0rD'
 saltRounds = 10
 flash  = require "connect-flash"
 mongoose.connect db.url
+SearchModel = require "./models/search.coffee"
 
 
 # we've started you off with Express, 
@@ -79,6 +80,14 @@ app.post '/signup', passport.authenticate('local-signup',
 
 app.get '/savesearch', (request, response) ->
     console.log request.query.searchParams
+    newSearch = new SearchModel
+    newSearch.user = request.user
+    newSearch.searchQuery = request.query.searchParams
+    newSearch.save
+    newSearch.save (err) ->
+          if err
+            return err
+          return request.flash status: "success"
                           
 isLoggedIn = (req, res, next) ->
   # if user is authenticated in the session, carry on
