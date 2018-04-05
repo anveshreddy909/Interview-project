@@ -42,8 +42,8 @@ $(document).ready(function () {
             .catch(e=>alert("error"))
   });
   
-  var loadSearchData = function(query, name){
-    console.log("load called", query);
+  var loadSearchData = function(event){
+    console.log("load called", $(event.target).attr('label'));
   }
   
   var searchDomain = function() {
