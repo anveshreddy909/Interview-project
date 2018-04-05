@@ -1,8 +1,10 @@
-const mongoose = require('mongoose');
+mongoose = require('mongoose');
 SearchModel = require '../models/search.coffee'
 
-
-export.create = (req, res) -> 
+###
+#create new search item
+###
+exports.create = (req, res) -> 
     newSearch = new SearchModel
     newSearch.user = req.user
     newSearch.searchQuery = req.body.value
@@ -12,3 +14,12 @@ export.create = (req, res) ->
           if err
             return err
           return res.json status: "success"
+        
+###
+#loads list of saved searches
+###
+exports.loadSaveSearch = (req, res) ->
+    SearchModel.find {user: req.user._id}, {_id: 0, user: 0, __v: 0},  (err, searchResults)  ->
+      if err
+            return err
+      return res.json {data: searchResults, status: "success"}

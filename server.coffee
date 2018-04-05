@@ -52,7 +52,7 @@ app.use methodOverride((req) ->
 app.use flash()    
 app.use passport.initialize()
 app.use passport.session()
-
+require('./config/routes.coffee')(app, passport)
 
 app.set 'view engine', 'pug'
 #require('./config/routes.coffee') app, passport
@@ -88,16 +88,6 @@ app.post '/signup', passport.authenticate('local-signup',
   failureRedirect: '/signup'
   failureFlash: true)
 
-app.post '/savesearch', (request, response) ->
-    newSearch = new SearchModel
-    newSearch.user = request.user
-    newSearch.searchQuery = request.body.value
-    newSearch.labels = request.body.label
-    newSearch.name = request.body.name
-    newSearch.save (err) ->
-          if err
-            return err
-          return response.json status: "success"
         
 app.get '/loadsavesearch', (req, res) ->
   SearchModel.find {user: req.user._id}, {_id: 0, user: 0, __v: 0},  (err, searchResults)  ->
