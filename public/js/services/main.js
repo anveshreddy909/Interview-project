@@ -13,7 +13,7 @@ const services = {
       name: searchname,
       label: labelItem
     }
-    return fetch('/savesearch', {credentials:'include', method: 'POST', body: JSON.stringify(saveData)})
+    return fetch('/savesearch', {credentials:'include', method: 'POST', body: JSON.stringify(saveData), headers: {'content-type': 'application/json'}})
           .then(response=>response.json())
           .catch(e=>Promise.reject("save call failed"))
           .then(response=>Promise.resolve(response))

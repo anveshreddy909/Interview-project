@@ -5,6 +5,7 @@ Schema = mongoose.Schema
 searchSchema = mongoose.Schema(
   user: { type : Schema.ObjectId, ref : 'User' },
   searchQuery: String,
+  labels: String,
   name: String
 )
 

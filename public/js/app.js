@@ -100,7 +100,7 @@ $(document).ready(function () {
                     <th scope="row">${index}</th>
                     <td>${val.name}</td>
                     <td>${val.searchQuery}</td>
-                    <td><button class="btn btn-outline-dark load-btn" query=${val.searchQuery} name=${val.name} >Load</button></td>
+                    <td><button class="btn btn-outline-dark load-btn" query=${val.searchQuery} name=${val.name} label=${val.labels}>Load</button></td>
                   </tr>`
                 )
               });

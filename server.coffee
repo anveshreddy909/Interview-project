@@ -89,11 +89,12 @@ app.post '/signup', passport.authenticate('local-signup',
   failureFlash: true)
 
 app.post '/savesearch', (request, response) ->
-    console.log request.body, request.query, request
+    console.log request.body
     newSearch = new SearchModel
     newSearch.user = request.user
-    newSearch.searchQuery = request.query.searchParams
-    newSearch.name = request.query.name
+    newSearch.searchQuery = request.body.value
+    newSearch.labels = request.body.label
+    newSearch.name = request.body.name
     newSearch.save (err) ->
           if err
             return err
