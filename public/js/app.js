@@ -57,10 +57,10 @@ $(document).ready(function () {
                     <td>${val.searchQuery}</td>
                     <td><button class="btn btn-outline-dark load-btn" query=${val.searchQuery} name=${val.name} >Load</button></td>
                   </tr>`
-                )
+                )"
               });
       
-               $('#search-results').show(); //
+               $('#show-save-results').show(); //
             })
             .catch(e=>console.log(e))
   });
