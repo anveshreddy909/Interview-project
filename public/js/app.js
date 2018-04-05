@@ -59,8 +59,8 @@ $(document).ready(function () {
            .then(data=>{
               console.log("search data",data);
               let searchTable = $('.search-result-table');
-              searchTable.append(`<table>
-                    <thead>
+              searchTable.append(`<table class="table m-5 table-bordered">
+                    <thead class="thead-dark">
                       <tr>
                         <td>Domain</td>
                         <td>total email</td>
@@ -70,10 +70,13 @@ $(document).ready(function () {
                     </thead>
                     <tbody></tbody>
                 </table>`)
-             let tableBody = $(searchTable+' tbody');
-              data.foreach(val=>{
+             let tableBody = $('.search-result-table tbody');
+              data.forEach(val=>{
                 tableBody.append(`<tr>
-                    <td>${}</td>
+                    <td>${val.data.meta.params.domain}</td>
+                    <td>${val.data.data.total}</td>
+                    <td>${val.data.data.generic_emails}</td>
+                    <td>${val.data.data.personal_emails}</td>
                 </tr>`)
               })
       
