@@ -18,6 +18,8 @@ flash  = require "connect-flash"
 mongoose.connect db.url
 SearchModel = require "./models/search.coffee"
 mongoStore = require('connect-mongo') expressSession
+emailHunt = require 'hunter.io'
+hunter = new emailHunt('f4fedb89a7dd9402e9e0b09e60249a975e58b6ac')
 
 
 # we've started you off with Express, 
@@ -106,6 +108,17 @@ app.get '/loadsavesearch', (req, res) ->
 app.get '/logout',(req, res) ->
   req.logout();
   res.redirect('/');
+  
+app.get '/searchDomain', (req, res) -> 
+  console.log req.query
+  domain = req.query.domain
+  console.log domain
+  hunter.emailCount domain: domain, (err, result) ->
+      if(err)
+        return err
+      res.json result
+
+  
 
   
                           

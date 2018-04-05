@@ -49,8 +49,9 @@ $(document).ready(function () {
   var searchDomain = function() {
     let searchArr= [];
     if(searchItem.length) {
+      //services.search(searchItem[0].value).then(data=>{console.log(data)})
       searchItem.forEach(val=>{
-        searchArr.push(services.search(val.value));
+        services.search(val.value).then();
       })
     }
     
