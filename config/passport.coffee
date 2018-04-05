@@ -19,7 +19,11 @@ module.exports = (passport) ->
   # used to deserialize the user
   passport.deserializeUser (id, cb) ->
     console.log id
-    return User.load criteria: _id: id, cb
+    User.findOne _id: id, (err, user) ->
+      console.log user
+      if err
+        cb err, null
+      cb null, user
   # =========================================================================
   # LOCAL SIGNUP ============================================================
   # =========================================================================
