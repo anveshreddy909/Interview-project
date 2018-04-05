@@ -46,10 +46,10 @@ $(document).ready(function () {
     console.log("load called", $(event.target).attr('label'));
   }
   
-  var searchDomain = function() {
+  var searchDomain = function() { //Search on input domains
     let searchArr= [];
     if(searchItem.length) {
-      //services.search(searchItem[0].value).then(data=>{console.log(data)})
+      
       searchItem.forEach(val=>{
         searchArr.push(services.search(val.value))
       })
