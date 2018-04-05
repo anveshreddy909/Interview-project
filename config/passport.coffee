@@ -13,16 +13,13 @@ module.exports = (passport) ->
   # required for persistent login sessions
   # passport needs ability to serialize and unserialize users out of session
   # used to serialize the user for the session
-  passport.serializeUser (user, done) ->
+  passport.serializeUser (user, cb) ->
     done null, user.id
     return
   # used to deserialize the user
-  passport.deserializeUser (id, done) ->
+  passport.deserializeUser (id, cb) ->
     console.log id
-    User.findById id, (err, user) ->
-      done err, user
-      return
-    return
+    return User.load criteria: _id: id, cb
   # =========================================================================
   # LOCAL SIGNUP ============================================================
   # =========================================================================
