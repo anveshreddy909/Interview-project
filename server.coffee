@@ -98,17 +98,11 @@ app.get '/savesearch', (request, response) ->
           return response.json status: "success"
         
 app.get '/loadsavesearch', (req, res) ->
-  # SearchModel.find(user: req.user._id), populate('searchQuery').exec err, users  ->
-  #     console.log err, users
-  SearchModel
-    .find(user: req.user._id)
-    .populate('searchQuery','name')
-    .exec functerr, story ->
+  SearchModel.find user: req.user._id,  (err, searchResults)  ->
       if err
-        console.log err
-      console.log 'user', story
-      # prints "The author is Ian Fleming"
-      return
+            return err
+      return data: searchResults  status: "success"
+  
                           
 isLoggedIn = (req, res, next) ->
   console.log req, res ,next
