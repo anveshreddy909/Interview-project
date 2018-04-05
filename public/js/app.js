@@ -46,6 +46,8 @@ $(document).ready(function () {
     console.log("load called", query);
   }
   
+  var searchDomain = function() {}
+  
   $('#showSavedItems').click(()=>{
     services.loadSaveSearch()
             .then(data=>{
@@ -67,4 +69,6 @@ $(document).ready(function () {
   
   //$('.load-btn').click(function(){console.log("caleed", arguments)});
   $(document).on('click', '.load-btn', loadSearchData);
+  
+  $('.domain-search ').click(searchDomain)
 })
