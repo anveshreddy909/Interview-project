@@ -1,5 +1,7 @@
 mongoose = require('mongoose');
 SearchModel = require '../models/search.coffee'
+emailHunt = require 'hunter.io'
+hunter = new emailHunt('f4fedb89a7dd9402e9e0b09e60249a975e58b6ac')
 
 ###
 #create new search item
@@ -23,9 +25,21 @@ exports.loadSaveSearch = (req, res) ->
       if err
             return err
       return res.json {data: searchResults, status: "success"}
-    
+###
+#search page
+###   
 exports.index = (req, res) ->
   if req.isAuthenticated()
     res.render 'search'
   else
     res.render 'login'
+    
+###    
+# domain search handler
+###   
+exports.searchDomain = ( req, res) ->
+  domain = req.query.domain
+  hunter.emailCount domain: domain, (err, result) ->
+      if(err)
+        return err
+      res.json {data:result, status: "success"}
