@@ -7,6 +7,7 @@ module.exports = (app, passport) ->
     app.get '/loadsavesearch', search.loadSaveSearch
     app.get '/search', search.index
     app.get '/searchDomain', search.searchDomain
+    app.get '/login', user.login
     app.get '/signup', user.signup
     app.get '/logout', user.logout
     
@@ -25,10 +26,7 @@ module.exports = (app, passport) ->
         response.render 'index'
       else
         response.render 'login'
-
-
-    app.get '/login', (req, res) -> 
-      res.render 'login'
+    
 
     
       

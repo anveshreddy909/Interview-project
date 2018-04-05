@@ -1,5 +1,5 @@
 mongoose = require('mongoose');
-User = require '../models/users.coffee'
+User = require '../models/user.coffee'
 
 ###
 #create new search item
@@ -10,3 +10,6 @@ exports.signup = (req, res) ->
 exports.logout = (req, res) ->
     req.logout()
     res.redirect '/' ;
+    
+exports.login = (req, res) ->
+    req.render 'login'
