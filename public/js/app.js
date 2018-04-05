@@ -43,7 +43,11 @@ $(document).ready(function () {
   });
   
   $('#showSavedItems').click(()=>{
-    services.loadSaveSearch();
+    services.loadSaveSearch()
+            .then(data=>{
+              
+            })
+            .catch(e=>console.log(e))
   });
   
 })

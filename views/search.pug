@@ -25,7 +25,14 @@ html
             button.btn.btn-secondary(data-toggle="modal" data-target="#exampleModal") Save Search'
         div.tab-pane.fade.show(id="view-search") 
           button.btn.btn-primary(id="showSavedItems") Show Saved Search
-          ul.list-group.none.mt-5(id="view-results")
+          table.table(id="search-results")
+            thead.thead-dark
+              tr
+                th(scope="col") #
+                th(scope="col") name
+                th(scope="col") query
+                th(scope="col") action
+            
         
           
       #exampleModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
