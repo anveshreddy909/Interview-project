@@ -22,10 +22,9 @@ const services = {
   },
   
   search: function(domain) {
-    return fetch(`https://api.hunter.io/v2/email-count?domain=${domain}`,headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    }) 
+    return fetch(`https://api.hunter.io/v2/email-count?domain=${domain}`,{headers: {
+      'Accept': 'application/json'
+    }}) 
           .then(response=>response.json())
           .catch(e=>Promise.reject("search call failed"))
           .then(response=>{
