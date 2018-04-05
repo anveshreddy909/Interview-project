@@ -18,6 +18,7 @@ module.exports = (passport) ->
     return
   # used to deserialize the user
   passport.deserializeUser (id, done) ->
+    console.log id
     User.findById id, (err, user) ->
       done err, user
       return

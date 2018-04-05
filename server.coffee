@@ -17,6 +17,7 @@ saltRounds = 10
 flash  = require "connect-flash"
 mongoose.connect db.url
 SearchModel = require "./models/search.coffee"
+mongoStore = require('connect-mongo') expressSession
 
 
 # we've started you off with Express, 
