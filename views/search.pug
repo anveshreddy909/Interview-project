@@ -21,8 +21,10 @@ html
             input.border-white(type="text", id="searchField", placeholder="Enter search url, upto 3 url comma separated...")
           ul.list-group.none(id="search-results")
           div.d-flex.flex-row.justify-content-around.m-5
-            button.btn.btn-primary Search
-            button.btn.btn-secondary(data-toggle="modal" data-target="#exampleModal") Save Search'
+            div
+              button.btn.btn-primary Search
+              button.btn.btn-outline-dark Clear
+            button.btn.btn-secondary(data-toggle="modal" data-target="#exampleModal") Save Search
         div.tab-pane.fade.show(id="view-search") 
           button.btn.m-5.btn-primary.btn-sm.btn-outline-info(id="showSavedItems") Show Saved Search
           div.none(id="show-save-results")
