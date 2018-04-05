@@ -50,14 +50,14 @@ $(document).ready(function () {
     services.loadSaveSearch()
             .then(data=>{
               data.data.forEach((val, index)=>{
-                $('#search-results tbody').append(
+                $('#show-save-results tbody').append(
                   `<tr>
                     <th scope="row">${index}</th>
                     <td>${val.name}</td>
                     <td>${val.searchQuery}</td>
                     <td><button class="btn btn-outline-dark load-btn" query=${val.searchQuery} name=${val.name} >Load</button></td>
                   </tr>`
-                )"
+                )
               });
       
                $('#show-save-results').show(); //

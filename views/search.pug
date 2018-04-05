@@ -25,14 +25,15 @@ html
             button.btn.btn-secondary(data-toggle="modal" data-target="#exampleModal") Save Search'
         div.tab-pane.fade.show(id="view-search") 
           button.btn.m-5.btn-primary.btn-sm.btn-outline-info(id="showSavedItems") Show Saved Search
-          table.table.m-5.d-none.w-75.table-bordered(id="show-save-results")
-            thead.thead-dark
-              tr
-                th(scope="col") #
-                th(scope="col") name
-                th(scope="col") query
-                th(scope="col") action
-            tbody
+          div.none(id="show-save-results")
+            table.table.m-5.w-75.table-bordered
+              thead.thead-dark
+                tr
+                  th(scope="col") #
+                  th(scope="col") name
+                  th(scope="col") query
+                  th(scope="col") action
+              tbody
               
             
         
