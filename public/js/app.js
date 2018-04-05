@@ -46,7 +46,24 @@ $(document).ready(function () {
     console.log("load called", query);
   }
   
-  var searchDomain = function() {}
+  var searchDomain = function() {
+    let searchArr= [];
+    if(searchItem.length) {
+      searchItem.forEach(val){
+        searchArr.push(services.search(val.value));
+      }
+    }
+    
+    Promise.all(...services)
+           .then(data=>{
+            console.log("search data",data);
+           })
+           .catch(e=>console.log("domain search failed"));
+  }
+  
+  var clearSearch = function() {
+  
+  }
   
   $('#showSavedItems').click(()=>{
     services.loadSaveSearch()
@@ -70,5 +87,6 @@ $(document).ready(function () {
   //$('.load-btn').click(function(){console.log("caleed", arguments)});
   $(document).on('click', '.load-btn', loadSearchData);
   
-  $('.domain-search ').click(searchDomain)
+  $('.domain-search ').click(searchDomain);
+  $('.search-clear ').click(clearSearch);
 })
