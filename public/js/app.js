@@ -62,10 +62,10 @@ $(document).ready(function () {
               searchTable.append(`<table class="table m-5 table-bordered">
                     <thead class="thead-dark">
                       <tr>
-                        <td>Domain</td>
-                        <td>total email</td>
-                        <td>Generic email</td>
-                        <td>Personal email</td>
+                        <th scope="col">Domain</th>
+                        <th scope="col">total email</th>
+                        <th scope="col">Generic email</th>
+                        <th scope="col">Personal email</th>
                       </tr>
                     </thead>
                     <tbody></tbody>
@@ -85,7 +85,10 @@ $(document).ready(function () {
   }
   
   var clearSearch = function() {
-  
+    $('.search-result-table').html("");
+    searchItem=[];
+    $('#searchField').attr('placeholder', 'Enter search domain ...');
+    $('.searchVal').html('');
   }
   
   $('#showSavedItems').click(()=>{
