@@ -55,7 +55,7 @@ $(document).ready(function () {
                     <th scope="row">${index}</th>
                     <td>${val.name}</td>
                     <td>${val.searchQuery}</td>
-                    <td><button class="btn btn-outline-dark load-btn" value=val >Load</button></td>
+                    <td><button class="btn btn-outline-dark load-btn" query=${val.searchQuery} name=${val.name} >Load</button></td>
                   </tr>`
                 )
               });
@@ -65,6 +65,6 @@ $(document).ready(function () {
             .catch(e=>console.log(e))
   });
   
-  $('.load-btn').click(function(){console.log("caleed", arguments)});
-  
+  //$('.load-btn').click(function(){console.log("caleed", arguments)});
+  $(document).on('click', '.load-btn', loadSearchData);
 })
