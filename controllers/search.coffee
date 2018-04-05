@@ -23,3 +23,9 @@ exports.loadSaveSearch = (req, res) ->
       if err
             return err
       return res.json {data: searchResults, status: "success"}
+    
+exports.index = (req, res) ->
+  if req.isAuthenticated()
+    res.render 'search'
+  else
+    res.render 'login'

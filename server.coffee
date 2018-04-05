@@ -65,13 +65,6 @@ app.get "/", (request, response) ->
   else
     response.render 'login'
 
-app.get "/search",  (request, response) -> 
-  if request.isAuthenticated()
-    response.render 'search', title: 'Hey'
-  else
-    response.render 'login'
-
-
 app.post '/login', passport.authenticate('local-login',
   successRedirect: '/'
   failureRedirect: '/login'
@@ -87,13 +80,6 @@ app.post '/signup', passport.authenticate('local-signup',
   successRedirect: '/login'
   failureRedirect: '/signup'
   failureFlash: true)
-
-        
-app.get '/loadsavesearch', (req, res) ->
-  SearchModel.find {user: req.user._id}, {_id: 0, user: 0, __v: 0},  (err, searchResults)  ->
-      if err
-            return err
-      return res.json {data: searchResults, status: "success"}
     
 app.get '/logout',(req, res) ->
   req.logout();
