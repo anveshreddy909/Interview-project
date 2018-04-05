@@ -58,7 +58,7 @@ $(document).ready(function () {
     Promise.all([...searchArr])
            .then(data=>{
               console.log("search data",data);
-              
+              let searchTable = $('.search-result-table')
       
            })
            .catch(e=>console.log("domain search failed", e));
