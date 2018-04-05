@@ -58,7 +58,24 @@ $(document).ready(function () {
     Promise.all([...searchArr])
            .then(data=>{
               console.log("search data",data);
-              let searchTable = $('.search-result-table')
+              let searchTable = $('.search-result-table');
+              searchTable.append(`<table>
+                    <thead>
+                      <tr>
+                        <td>Domain</td>
+                        <td>total email</td>
+                        <td>Generic email</td>
+                        <td>Personal email</td>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>`)
+             let tableBody = $(searchTable+' tbody');
+              data.foreach(val=>{
+                tableBody.append(`<tr>
+                    <td>${}</td>
+                </tr>`)
+              })
       
            })
            .catch(e=>console.log("domain search failed", e));
