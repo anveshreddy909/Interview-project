@@ -22,10 +22,14 @@ const services = {
   },
   
   search: function(domain) {
-    return fetch('/searchDomain?domain='+domain,{credentials:'include'}) 
+    return fetch('/searchDomain?domain='+domain,{credentials:'include', headers: {
+        "Accept": "application/json",
+        'Content-Type': 'application/json'
+        }}) 
           .then(response=>response.json())
-          .catch(e=>Promise.reject("search call failed"))
           .then(response=> Promise.resolve(response))
+          .catch(e=>Promise.reject("search call failed"))
+          
   }
   
 }

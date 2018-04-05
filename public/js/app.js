@@ -51,7 +51,7 @@ $(document).ready(function () {
     if(searchItem.length) {
       //services.search(searchItem[0].value).then(data=>{console.log(data)})
       searchItem.forEach(val=>{
-        services.search(val.value).then();
+        searchArr.push(services.search(val.value))
       })
     }
     
