@@ -42,10 +42,25 @@ $(document).ready(function () {
             .catch(e=>alert("error"))
   });
   
+  var loadSeachData = function(query, name){
+    console.log("load called");
+  }
+  
   $('#showSavedItems').click(()=>{
     services.loadSaveSearch()
             .then(data=>{
-              
+              data.data.forEach((val, index)=>{
+                $('#search-results tbody').append(
+                  `<tr>
+                    <th scope="row">${index}</th>
+                    <td>${val.searchQuery}</td>
+                    <td>${val.name}</td>
+                    <td><button class="btn btn-outline-dark" onclick=loadSeachData(${val.searchQuery}, ${val.name})>Load</button></td>
+                  </tr>`
+                )
+              });
+      
+               $('#search-results').show(); //
             })
             .catch(e=>console.log(e))
   });

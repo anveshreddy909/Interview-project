@@ -25,7 +25,7 @@ html
             button.btn.btn-secondary(data-toggle="modal" data-target="#exampleModal") Save Search'
         div.tab-pane.fade.show(id="view-search") 
           button.btn.btn-primary(id="showSavedItems") Show Saved Search
-          table.table.m-5(id="search-results")
+          table.table.m-5.hide(id="search-results")
             thead.thead-dark
               tr
                 th(scope="col") #
@@ -33,6 +33,7 @@ html
                 th(scope="col") query
                 th(scope="col") action
             tbody
+              
             
         
           
