@@ -116,7 +116,7 @@ app.get '/searchDomain', (req, res) ->
   hunter.emailCount domain: domain, (err, result) ->
       if(err)
         return err
-      res.json result
+      res.json {data:result, status: "success"}
 
   
 

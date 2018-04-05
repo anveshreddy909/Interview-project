@@ -49,17 +49,17 @@ $(document).ready(function () {
   var searchDomain = function() {
     let searchArr= [];
     if(searchItem.length) {
-      //services.search(searchItem[0].value).then(data=>{console.log(data)})
-      searchItem.forEach(val=>{
-        searchArr.push(services.search(val.value))
-      })
+      services.search(searchItem[0].value).then(data=>{console.log(data)})
+      // searchItem.forEach(val=>{
+      //   searchArr.push(services.search(val.value))
+      // })
     }
     
-    Promise.all(...searchArr)
-           .then(data=>{
-            console.log("search data",data);
-           })
-           .catch(e=>console.log("domain search failed", e));
+//     Promise.all(...searchArr)
+//            .then(data=>{
+//              console.log("search data",data);
+//            })
+//            .catch(e=>console.log("domain search failed", e));
   }
   
   var clearSearch = function() {
