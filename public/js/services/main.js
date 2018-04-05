@@ -19,6 +19,13 @@ const services = {
           .then(response=>response.json())
           .catch(e=>Promise.reject("load call failed"))
           .then(response=>Promise.resolve(response))
+  },
+  
+  search: function(domain) {
+    return fetch(`https://api.hunter.io/v2/email-count?domain=${domain}`) 
+          .then(response=>response.json())
+          .catch(e=>Promise.reject("search call failed"))
+          .then(response=>Promise.resolve(response))
   }
   
 }
