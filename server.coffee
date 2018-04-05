@@ -87,7 +87,7 @@ app.post '/signup', passport.authenticate('local-signup',
   failureFlash: true)
 
 app.get '/savesearch', (request, response) ->
-    console.log request.session
+    console.log request.user
     newSearch = new SearchModel
     newSearch.user = request.user
     newSearch.searchQuery = request.query.searchParams
@@ -98,7 +98,6 @@ app.get '/savesearch', (request, response) ->
           return response.json status: "success"
         
 app.get '/loadsavesearch', (req, res) ->
-  console.log req.user
                           
 isLoggedIn = (req, res, next) ->
   console.log req, res ,next

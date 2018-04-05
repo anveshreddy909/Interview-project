@@ -14,7 +14,7 @@ module.exports = (passport) ->
   # passport needs ability to serialize and unserialize users out of session
   # used to serialize the user for the session
   passport.serializeUser (user, cb) ->
-    done null, user.id
+    cb null, user.id
     return
   # used to deserialize the user
   passport.deserializeUser (id, cb) ->
