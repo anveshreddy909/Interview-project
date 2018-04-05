@@ -98,10 +98,10 @@ app.get '/savesearch', (request, response) ->
           return response.json status: "success"
         
 app.get '/loadsavesearch', (req, res) ->
-  SearchModel.find user: req.user._id,  (err, searchResults)  ->
+  SearchModel.find {user: req.user._id}, {_id: 0, user: 0, __v: 0},  (err, searchResults)  ->
       if err
             return err
-      return data: searchResults  status: "success"
+      return res.json {data: searchResults, status: "success"}
   
                           
 isLoggedIn = (req, res, next) ->
