@@ -25,6 +25,7 @@ const services = {
     return fetch('/searchDomain?domain='+domain,{credentials:'include'}) 
           .then(response=>{console.log("response data",response);return response.json()})
           .then(data=>{console.log("data data",data); return Promise.resolve(data)})
+          .catch(e=>Promise.reject("search call failed"))
           
   }
   
