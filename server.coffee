@@ -57,32 +57,6 @@ app.set 'view engine', 'pug'
 #require('./config/routes.coffee') app, passport
 
 
-# http://expressjs.com/en/starter/basic-routing.html
-app.get "/", (request, response) -> 
-  if request.isAuthenticated()
-    response.render 'index', title: 'Hey'
-  else
-    response.render 'login'
-
-app.post '/login', passport.authenticate('local-login',
-  successRedirect: '/'
-  failureRedirect: '/login'
-  failureFlash: true)
-
-app.get '/login', (req, res) -> 
-  res.render 'login'
-
-app.get '/signup', (req, res) -> 
-  res.render 'signup'
-
-app.post '/signup', passport.authenticate('local-signup',
-  successRedirect: '/login'
-  failureRedirect: '/signup'
-  failureFlash: true)
-    
-app.get '/logout',(req, res) ->
-  req.logout();
-  res.redirect('/');
                           
 isLoggedIn = (req, res, next) ->
   console.log req, res ,next
