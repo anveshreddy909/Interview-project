@@ -25,6 +25,11 @@ mongoStore = require('connect-mongo') expressSession
 
 sessionObj = 
    secret: 'mySecretKey'
+   resave: false
+   saveUninitialized: true
+   store: new mongoStore
+      url: db.url
+      collection : 'sessions'
         
 
 require('./config/passport.coffee') passport
