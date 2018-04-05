@@ -102,6 +102,11 @@ app.get '/loadsavesearch', (req, res) ->
       if err
             return err
       return res.json {data: searchResults, status: "success"}
+    
+app.get '/logout',(req, res) ->
+  req.logout();
+  res.redirect('/');
+
   
                           
 isLoggedIn = (req, res, next) ->
