@@ -7,8 +7,13 @@ const services = {
           .then(response=>Promise.resolve(response))
   },
   
-  saveSearch: function(searchVal, searchname) {
-    return fetch('/savesearch?searchParams='+searchVal+'&name='+searchname, {credentials:'include'})
+  saveSearch: function(searchVal, searchname, labelItem) {
+    const saveData= {
+      value: searchVal,
+      name: searchname,
+      label: labelItem
+    }
+    return fetch('/savesearch', {credentials:'include', method: 'POST', body: JSON.stringify(saveData)})
           .then(response=>response.json())
           .catch(e=>Promise.reject("save call failed"))
           .then(response=>Promise.resolve(response))

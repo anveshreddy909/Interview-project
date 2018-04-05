@@ -32,7 +32,7 @@ $(document).ready(function () {
       alert("search name cannot be empty");
       return;
     }
-    services.saveSearch(searchItem.reduce((finalVal, val)=>{return (finalVal? finalVal+ ", "+ val.value : val.value)},""), $('#searchName').val())
+    services.saveSearch(searchItem.reduce((finalVal, val)=>{return (finalVal? finalVal+ ", "+ val.value : val.value)},""), $('#searchName').val(), searchItem.reduce((finalVal, val)=>{return (finalVal? finalVal+ ", "+ val.label : val.label)},""))
             .then(data=>{
               console.log(data);
               if(data.status.toLowerCase() === "success"){
