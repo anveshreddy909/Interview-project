@@ -49,16 +49,16 @@ $(document).ready(function () {
   var searchDomain = function() {
     let searchArr= [];
     if(searchItem.length) {
-      searchItem.forEach(val){
+      searchItem.forEach(val=>{
         searchArr.push(services.search(val.value));
-      }
+      })
     }
     
-    Promise.all(...services)
+    Promise.all(...searchArr)
            .then(data=>{
             console.log("search data",data);
            })
-           .catch(e=>console.log("domain search failed"));
+           .catch(e=>console.log("domain search failed", e));
   }
   
   var clearSearch = function() {
